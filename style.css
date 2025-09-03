@@ -453,7 +453,6 @@ p {
   background-image: linear-gradient(to right, var(--hero-backgrond-gradient-from), var(--hero-backgrond-gradient-to));
   height: calc(95vh - var(--header-height));
   position: relative;
-  overflow: hidden;
 }
 
 .hero__content-wrapper {
@@ -577,6 +576,7 @@ html {
   scroll-behavior: smooth;
   font-family: var(--page-font-face), sans-serif;
   font-size: clamp(1rem, 1.25vw, 1.2rem);
+  overflow-x: hidden;
 }
 
 
