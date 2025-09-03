@@ -453,6 +453,7 @@ p {
   background-image: linear-gradient(to right, var(--hero-backgrond-gradient-from), var(--hero-backgrond-gradient-to));
   height: calc(95vh - var(--header-height));
   position: relative;
+  overflow: hidden;
 }
 
 .hero__content-wrapper {
