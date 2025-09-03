@@ -289,6 +289,10 @@ p {
   background-image: linear-gradient(to right, var(--hero-backgrond-gradient-from), var(--hero-backgrond-gradient-to));
 }
 
+.header__nav-item *:any-link {
+  text-decoration: none;
+}
+
 @media (max-width: 45rem) {
   .header {
     padding-inline: var(--page-padding-inline);
@@ -400,7 +404,7 @@ p {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 24rem;
+  width: 100%;
   max-width: 100%;
   height: 100%;
   padding: var(--header-height) var(--padding-m);
@@ -582,7 +586,6 @@ html {
   scroll-behavior: smooth;
   font-family: var(--page-font-face), sans-serif;
   font-size: clamp(1rem, 1.25vw, 1.2rem);
-  overflow-x: hidden;
 }
 
 
