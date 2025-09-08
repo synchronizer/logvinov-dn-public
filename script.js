@@ -113,6 +113,73 @@ Array.from(document.querySelectorAll('.call-request')).forEach(item => {
 
     }
 })
+Array.from(document.querySelectorAll('.carousel')).forEach(carousel => {
+    const left = carousel.querySelector('.carousel__left'),
+        right = carousel.querySelector('.carousel__right'),
+        content = carousel.querySelector('.carousel__content');
+
+    const checkControls = () => {
+        if (content.scrollLeft <= 2) {
+            left.classList.add('carousel__left_hide')
+        } else {
+            left.classList.remove('carousel__left_hide')
+        }
+
+        if (content.offsetWidth + content.scrollLeft >= content.scrollWidth - 2) {
+            right.classList.add('carousel__right_hide')
+        } else {
+            right.classList.remove('carousel__right_hide')
+        }
+
+    }
+
+    window.addEventListener('load', checkControls)
+
+    content.addEventListener('scroll', checkControls)
+
+    left.addEventListener('click', () => {
+        content.scrollTo({
+            top: 0,
+            left: content.scrollLeft - content.offsetWidth * .99,
+            behavior: "smooth",
+        });
+    })
+
+    right.addEventListener('click', () => {
+        content.scrollTo({
+            top: 0,
+            left: content.scrollLeft + content.offsetWidth * .99,
+            behavior: "smooth",
+        });
+    })
+
+
+
+
+    const carosel__items = Array.from(carousel.querySelectorAll('.carousel__content > *'));
+
+    carosel__items.forEach((item, key) => {
+        item.classList.add('carousel__item', 'carousel__item_hide')
+        item.style.transitionDelay = `${key * 100}ms`
+    })
+
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                carosel__items.forEach(item => {
+                    item.classList.toggle('carousel__item_hide', !entry.isIntersecting)
+                })
+                if (entry.isIntersecting) observer.unobserve(entry.target);
+            })
+        }, {
+        threshold: .3
+    }
+    )
+
+    observer.observe(carousel)
+
+
+})
 if (!window.localStorage.getItem('acceptCookies')) {
     pushNotification({
         text: 'Сайт использует cookies',
@@ -121,6 +188,122 @@ if (!window.localStorage.getItem('acceptCookies')) {
         },
     })
 }
+
+Array.from(document.querySelectorAll('.fullscreen-gallery')).forEach(fullscreenGallery => {
+    const fullscreenGallery__close = fullscreenGallery.querySelector('.fullscreen-gallery__close'),
+        fullscreenGallery__items = fullscreenGallery.querySelectorAll('.fullscreen-gallery__item');
+
+    const showPreviev = () => {
+        const previewElement = document
+            .querySelectorAll(`
+            [data-fullscreen-gallery="${fullscreenGallery
+                    .getAttribute('id')
+                }"]
+            `)[Math.round(fullscreenGallery.scrollLeft / fullscreenGallery.offsetWidth)];
+        if (!previewElement) return;
+
+
+
+        setTimeout(() => {
+            previewElement.focus({ focusVisible: true })
+        }, 1)
+
+
+    }
+
+    fullscreenGallery.addEventListener('cancel', showPreviev)
+    
+    fullscreenGallery__close.addEventListener('click', () => {
+        showPreviev()
+        fullscreenGallery.close()
+    })
+
+    Array
+        .from(fullscreenGallery__items)
+        .forEach(fullscreenGallery__item => {
+            fullscreenGallery__item.addEventListener('click', () => {
+                showPreviev()
+                fullscreenGallery.close()
+            })
+
+            fullscreenGallery__item.querySelector('.fullscreen-gallery__item > *').addEventListener('click', e => {
+                e.stopPropagation();
+            })
+        })
+
+
+
+})
+
+
+Array.from(document.querySelectorAll('.fullscreen-gallery')).forEach(fullscreenGallery => {
+    const left = fullscreenGallery.querySelector('.fullscreen-gallery__left'),
+        right = fullscreenGallery.querySelector('.fullscreen-gallery__right');
+
+    left.addEventListener('click', () => {
+        fullscreenGallery.scrollTo({
+            left: fullscreenGallery.scrollLeft - fullscreenGallery.offsetWidth,
+            // behavior: "smooth",
+        });
+    })
+
+    right.addEventListener('click', () => {
+        fullscreenGallery.scrollTo({
+            left: fullscreenGallery.scrollLeft + fullscreenGallery.offsetWidth,
+            // behavior: "smooth",
+        });
+    })
+
+    fullscreenGallery.addEventListener('keydown', e => {
+        if (e.code === 'ArrowRight') right.click();
+        if (e.code === 'ArrowLeft') left.click();
+    })
+
+    const checkLeftArrow = () => {
+
+        if (fullscreenGallery.scrollLeft + fullscreenGallery.offsetLeft <= 1) {
+            left.classList.add('fullscreen-gallery__left_hide');
+            return
+        }
+
+        left.classList.remove('fullscreen-gallery__left_hide')
+    }
+
+    const checkRightArrow = () => {
+
+        if (fullscreenGallery.scrollWidth - fullscreenGallery.scrollLeft - fullscreenGallery.offsetWidth + fullscreenGallery.offsetLeft <= 1) {
+            right.classList.add('fullscreen-gallery__right_hide');
+            return
+        }
+
+        right.classList.remove('fullscreen-gallery__right_hide')
+    }
+
+    const checkControls = () => {
+        checkLeftArrow();
+        checkRightArrow()
+    }
+
+    window.addEventListener('DOMContentLoaded', checkControls)
+    fullscreenGallery.addEventListener('scroll', checkControls)
+
+
+    const id = fullscreenGallery.getAttribute('id');
+    const triggersList = document.querySelectorAll(`[data-fullscreen-gallery="${id}"]`);
+    Array
+        .from(triggersList)
+        .forEach((trigger, key) => {
+            trigger.addEventListener('click', () => {
+                fullscreenGallery.showModal()
+                fullscreenGallery.scrollTo({
+                    left: fullscreenGallery.offsetWidth * key,
+                });
+                checkControls();
+            })
+        })
+
+})
+
 Array.from(document.querySelectorAll('.header')).forEach(header => {
     const header__burger = header.querySelector('.header__burger'),
         header__navTouchWrapper = header.querySelector('.header__nav-touch-wrapper'),
