@@ -304,6 +304,31 @@ Array.from(document.querySelectorAll('.fullscreen-gallery')).forEach(fullscreenG
 
 })
 
+
+
+Array.from(document.querySelectorAll('.grid')).forEach(grid => {
+    const grid__items = Array.from(grid.querySelectorAll(':scope > *'));
+
+    grid__items.forEach((item, key) => {
+        item.classList.add('grid__item', 'grid__item_hide')
+        item.style.transitionDelay = `${key * 100}ms`
+    })
+
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                grid__items.forEach(item => {
+                    item.classList.toggle('grid__item_hide', !entry.isIntersecting)
+                })
+                if (entry.isIntersecting) observer.unobserve(entry.target);
+            })
+        }, {
+        threshold: .3
+    }
+    )
+
+    observer.observe(grid)
+})
 Array.from(document.querySelectorAll('.header')).forEach(header => {
     const header__burger = header.querySelector('.header__burger'),
         header__navTouchWrapper = header.querySelector('.header__nav-touch-wrapper'),
@@ -358,21 +383,17 @@ Array.from(document.querySelectorAll('.slider')).forEach(slider => {
     const items = Array.from(slider.querySelectorAll('.slider__content > *')),
             teasers = Array.from(slider.querySelectorAll('.slider__teaser'));
     
-            teasers.forEach((teaser, key) => {
-                teaser.querySelector('.slider__teaser-bar').style.animationDuration = `${time}s`;
-        
-            });
 
     let activeNumber = 0, timerPlay, timerPause;
 
     const sliderPlay = () => {
         items.forEach(item => item.classList.remove('slider__item_active'));
         teasers.forEach(teaser => teaser.classList.remove('slider__teaser_active'));
-        teasers.forEach(teaser => teaser.querySelector('.slider__teaser-bg').classList.remove('rounded-s'));
+        // teasers.forEach(teaser => teaser.querySelector('.slider__teaser-bg').classList.remove('rounded-s'));
 
         items[activeNumber].classList.add('slider__item_active');
         teasers[activeNumber] && teasers[activeNumber].classList.add('slider__teaser_active');
-        teasers[activeNumber] && teasers[activeNumber].querySelector('.slider__teaser-bg').classList.add('rounded-s');
+        // teasers[activeNumber] && teasers[activeNumber].querySelector('.slider__teaser-bg').classList.add('rounded-s');
 
         timerPlay = setTimeout(() => {
             activeNumber = (activeNumber + 1) % items.length;
@@ -397,11 +418,9 @@ Array.from(document.querySelectorAll('.slider')).forEach(slider => {
 
         items.forEach(item => item.classList.remove('slider__item_active'));
         teasers.forEach(teaser => teaser.classList.remove('slider__teaser_active'));
-        teasers.forEach(teaser => teaser.querySelector('.slider__teaser-bg').classList.remove('rounded-s'));
 
         items[activeNumber].classList.add('slider__item_active');
         teasers[activeNumber] && teasers[activeNumber].classList.add('slider__teaser_active');
-        teasers[activeNumber] && teasers[activeNumber].querySelector('.slider__teaser-bg').classList.add('rounded-s');
 
         sliderPause();
     }))
