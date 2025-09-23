@@ -490,8 +490,22 @@
 .card__content {
   align-items: start;
   gap: var(--gap-s);
+}
+
+.card__content,
+.card_padding_s .card__content {
   padding: var(--gap-s);
 }
+.card_padding_m .card__content {
+  padding: var(--gap-m);
+}
+.card_padding_l .card__content {
+  padding: var(--gap-l);
+}
+.card_padding_xs .card__content {
+  padding: var(--gap-xs);
+}
+
 .card_layout_horizontal .card__content {
   display: flex;
 }
@@ -780,6 +794,9 @@
 .fullwidth {
   margin-inline: calc((100% - 100vw) / 2);
   padding-inline: calc((100vw - 100%) / 2);
+}
+.gap {
+  display: inline-block;
 }
 .gap_size_xxs {
   height: var(--gap-xxs);
@@ -1344,7 +1361,7 @@ a[href] {
 
 .modal_card .modal__content {
 
-    padding: var(--gap-m);
+    padding: calc(var(--gap-s) * 1.5);
     background: var(--page-background-color-light);
 }
 
@@ -1681,7 +1698,7 @@ html {
     text-wrap: pretty;
     font-size: 2rem;
     line-height: 2.3rem;
-    margin-block: 2.3rem;
+    margin-block: 4.6rem;
     max-width: var(--typo-text-block-max-width);
     color: var(--text-bright-color);
     font-family: serif;
@@ -1723,6 +1740,7 @@ html {
   text-wrap: pretty;
   font-weight: var(--font-weight-text);
   color: var(--text-middle-color);
+  padding-left: 1ch;
 }
 
 .list_size_m {
