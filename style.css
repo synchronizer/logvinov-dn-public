@@ -927,9 +927,9 @@
   justify-content: space-between;
   background-color: var(--page-background-color);
 
-  animation: shadow-toggle linear both;
+  animation: 1ms shadow-toggle linear both;
   animation-timeline: scroll();
-  animation-range: 0rem 0.01rem;
+  animation-range: 1px 50px;
   --_border-bottom-color: rgba(0, 0, 0, .2);
 }
 
