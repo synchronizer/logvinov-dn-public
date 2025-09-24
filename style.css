@@ -453,7 +453,6 @@
   }
 
   .about-preview__image {
-    corner-shape: squircle;
     height: initial;
     width: 100%;
     aspect-ratio: 3/4;
