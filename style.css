@@ -1190,7 +1190,11 @@
 
 .hero__breadcrumbs {
   position: absolute;
-  bottom: var(--gap-xs);
+  bottom: 0;
+  padding-block: var(--gap-xs);
+}
+#from-slider {
+  scroll-margin-top: var(--header-height);
 }
 
 @media (max-aspect-ratio: 1){
