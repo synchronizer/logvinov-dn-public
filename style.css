@@ -348,6 +348,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  background-color: var(--page-background-color);
 }
 .fzf__img {
 display: block;
