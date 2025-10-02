@@ -497,7 +497,9 @@ left: 45%;
     display: flex;
     gap: var(--gap-xxs);
 }
-
+.breadcrumbs__item {
+    white-space: nowrap;
+}
 .breadcrumbs__item:not(:last-child)::after {
     content: '/';
     margin-left: var(--gap-xxs);
@@ -1172,12 +1174,15 @@ left: 45%;
   margin-inline: calc((100% - 100vw) / 2);
   padding-inline: calc((100vw - 100%) / 2);
   background-color: var(--page-background-color);
-  height: clamp(24rem, 95vh - var(--header-height), 100rem);
+  height: clamp(32rem, 95vh - var(--header-height), 100rem);
+  height: clamp(32rem, 95svh - var(--header-height), 100rem);
   position: relative;
 }
-
+.hero__price {
+  margin-bottom: var(--gap-s);
+}
 .hero__title {
-  --_font-size: min(var(--typo-title-xl-font-size), 12vw, 10vh);
+  --_font-size: min(var(--typo-title-xl-font-size), 12vw, 8vh);
   font-size: var(--_font-size);
   line-height: 1;
   letter-spacing: -.02em;
@@ -1191,6 +1196,7 @@ left: 45%;
   justify-content: center;
   height: 100%;
   max-width: 30rem;
+  padding-bottom: 7.5%;
   position: relative;
 }
 
@@ -1218,11 +1224,11 @@ left: 45%;
 
 @media (max-aspect-ratio: 1){
   .hero {
-    height: calc(75vh - var(--header-height));
+    /* height: max(85vh - var(--header-height), 32rem); */
   }
   
 }
-@media (max-aspect-ratio: .65) {
+@media (max-width: 40rem) {
   
   .hero__img {
     display: none;
@@ -1693,6 +1699,22 @@ html {
 .rounded-l_1101 {
   border-radius: var(--border-radius-l) var(--border-radius-l) 0 var(--border-radius-l);
 }
+
+
+.price-label {
+  color: var(--text-bright-color);
+  box-shadow: 0 0 0 1.5px currentColor;
+  width: max-content;
+  font-size: var(--typo-text-s-font-size);
+  padding-inline: .75em;
+  line-height: var(--control-height-s);
+  height: var(--control-height-s);
+}
+
+[data-color-scheme="dark"] .price-label,
+.price-label[data-color-scheme="dark"] {
+    box-shadow: 0 0 0 1px currentColor;
+}
 .qa {
     background: var(--page-background-color-light);
     cursor: pointer;
@@ -1757,7 +1779,7 @@ html {
 
 .slider__teaser-list {
   position: absolute;
-  bottom: var(--gap-m);
+  bottom: var(--gap-s);
   left: 0;
   right: 0;
   text-align: center;
