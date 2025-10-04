@@ -387,11 +387,11 @@ left: 45%;
   grid-template-columns: 5fr 3fr;
   position: relative;
   isolation: isolate;
-  background-image:
+  /* background-image:
     radial-gradient(circle at var(--__circle-x) var(--__circle-y), var(--_circle-color) var(--_circle-radius), transparent calc(var(--_circle-radius) + 1px)),
     radial-gradient(circle at var(--__circle-x) var(--__circle-y), var(--_circle-color) calc(var(--_circle-radius) * .8), transparent calc(var(--_circle-radius) * .8 + 1px)),
     radial-gradient(circle at var(--__circle-x) var(--__circle-y), var(--_circle-color) calc(var(--_circle-radius) * .6), transparent calc(var(--_circle-radius) * .6 + 1px)),
-    radial-gradient(circle at var(--__circle-x) var(--__circle-y), var(--_circle-color) calc(var(--_circle-radius) * .4), transparent calc(var(--_circle-radius) * .4 + 1px));
+    radial-gradient(circle at var(--__circle-x) var(--__circle-y), var(--_circle-color) calc(var(--_circle-radius) * .4), transparent calc(var(--_circle-radius) * .4 + 1px)); */
 
 
   position: relative;
@@ -434,7 +434,7 @@ left: 45%;
 
 .about-preview__image {
   position: relative;
-  height: 135%;
+  height: 180%;
   overflow: hidden;
 
 
@@ -442,7 +442,7 @@ left: 45%;
 
 .about-preview__image-src {
   position: absolute;
-  bottom: 0;
+  bottom: -10%;
 
 
 
@@ -481,6 +481,10 @@ left: 45%;
     height: initial;
     width: 100%;
     aspect-ratio: 3/4;
+  }
+
+  .about-preview__image-src {
+    bottom: 0;
   }
 
 }
