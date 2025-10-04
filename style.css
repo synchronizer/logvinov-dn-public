@@ -1189,6 +1189,17 @@ left: 45%;
   color: var(--text-bright-color);
   font-weight: var(--font-weight-title);
 }
+.hero_about {
+  height: clamp(32rem, 85vh - var(--header-height), 100rem);
+  height: clamp(32rem, 85svh - var(--header-height), 100rem);
+  /* background: linear-gradient(var(--page-background-color), var(--page-background-color-light)) ; */
+}
+.hero_about .hero__title {
+  --_font-size: min(var(--typo-title-l-font-size), 12vw, 8vh);
+}
+.hero_about .hero__content-wrapper {
+  max-width: 42rem;
+}
 
 .hero__content-wrapper {
   display: flex;
