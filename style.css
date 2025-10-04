@@ -1198,7 +1198,7 @@ left: 45%;
   --_font-size: min(var(--typo-title-l-font-size), 12vw, 8vh);
 }
 .hero_about .hero__content-wrapper {
-  max-width: 42rem;
+  max-width: 40rem;
 }
 
 .hero__content-wrapper {
@@ -1237,9 +1237,12 @@ left: 45%;
   .hero {
     /* height: max(85vh - var(--header-height), 32rem); */
   }
+  .hero__img {
+    display: none;
+  }
   
 }
-@media (max-width: 40rem) {
+@media (max-width: 45rem) {
   
   .hero__img {
     display: none;
