@@ -1194,8 +1194,8 @@ left: 45%;
   font-weight: var(--font-weight-title);
 }
 .hero_about {
-  height: clamp(32rem, 85vh - var(--header-height), 100rem);
-  height: clamp(32rem, 85svh - var(--header-height), 100rem);
+  height: clamp(32rem, 75vh - var(--header-height), 100rem);
+  height: clamp(32rem, 75svh - var(--header-height), 100rem);
   /* background: linear-gradient(var(--page-background-color), var(--page-background-color-light)) ; */
 }
 .hero_about .hero__title {
@@ -1203,6 +1203,7 @@ left: 45%;
 }
 .hero_about .hero__content-wrapper {
   max-width: 40rem;
+  padding-bottom: 0;
 }
 
 .hero__content-wrapper {
