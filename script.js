@@ -42,7 +42,6 @@ Array.from(document.querySelectorAll('.about-preview')).forEach(block => {
     const observer = new IntersectionObserver(
         entries => {
             entries.forEach(entry => {
-                console.log(entry)
                 entry.target.classList.toggle('about-preview_hide', !entry.isIntersecting)
                 if (entry.isIntersecting) observer.unobserve(entry.target);
             })
